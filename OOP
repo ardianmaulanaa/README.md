@@ -1,0 +1,38 @@
+import 'dart:io';
+
+void main() {
+  print("KALKULATOR BMI");
+
+  try {
+    stdout.write("Masukkan berat badan dalam (kg):");
+    double weight = double.parse(stdin.readLineSync()!);
+
+    stdout.write("Masukkan tinggi badan dalam (m):");
+    double height = double.parse(stdin.readLineSync()!);
+
+    double bmi = calculateBMI(weight, height);
+    String category = getBMICategory(bmi);
+
+    print("\nHasil:");
+    print("BMI Anda: ${bmi.toStringAsFixed(2)}");
+    print("Kategori: $category");
+  } catch (e) {
+    print("Nilai yang dimasukkan tidak valid!.");
+  }
+}
+
+double calculateBMI(double weight, double height) {
+  return weight / (height * height);
+}
+
+String getBMICategory(double bmi) {
+  if (bmi < 18.5) {
+    return "kurus";
+  } else if (bmi < 24.9) {
+    return "normal";
+  } else if (bmi < 29.9) {
+    return "gemuk";
+  } else {
+    return "obesitas";
+  }
+}
